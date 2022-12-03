@@ -5,11 +5,11 @@
 using namespace std;
 
 //initialize our static variable
-int student::empID = 0;
+int student::studentNumber = 0;
 
 student::student() {
-    fname = "";
     lname = "";
+    fname = "";
     ssn = "";
     for (int i = 0; i < 4 ; i++)
 	{
@@ -17,11 +17,12 @@ student::student() {
 
 	}
     examAverage = 0.0;
+    studentNumber++;
 }
 
-student::student(string _fname, string _lname, string _ssn, double _examScores[4], double _examAverage) {
-    fname = _fname;
+student::student(string _lname, string _fname, string _ssn, double _examScores[4], double _examAverage) {
     lname = _lname;
+    fname = _fname;
     for (int i = 0; i < 4 ; i++)
 	{
         examScores[i] = _examScores[i];
@@ -29,15 +30,15 @@ student::student(string _fname, string _lname, string _ssn, double _examScores[4
 	}
     ssn = _ssn;
     examAverage=_examAverage;
-    empID++;
+    studentNumber++;
 }
 
 // setters
-void student::setname(string _fname) {
-    fname = _fname;
-}
-void student::setlname(string _lname) {
+void student::setname(string _lname) {
     lname = _lname;
+}
+void student::setfname(string _fname) {
+    fname = _fname;
 }
 void student::setssn(string _ssn) {
     ssn = _ssn;
@@ -61,20 +62,22 @@ string student::getfname() {
 string student::getlname() {
     return lname;
 }
+string student::getssn() {
+    return ssn;
+}
 double student::getAverage() {
     return examAverage;
 }
 //double student::getexamScores() {
 //    return examScores;
 //}
-int student::getEmpID() {
-    return empID;
+int student::getstudentNumber() {
+    return studentNumber;
 }
 
 //void student::determinNewexamScores() {
 //    examScores = examScores + (examScores * .03);
 //}
 void student::displaystudentInfo() {
-    cout << left << setw(15) << fname << setw(15) << lname << setw(15) << ssn << setw(15) << examScores[0] << setw(15) << examScores[1]<< setw(15) << examScores[2]<< setw(15) << examScores[3] << setw(15) << examAverage << setw(15) << empID << endl;
+    cout << fixed << showpoint << setprecision(1) << left << setw(15) << lname << setw(15) << fname << setw(15) << ssn << right << setw(15) << examScores[0] << setw(15) << examScores[1]<< setw(15) << examScores[2]<< setw(15) << examScores[3] << setw(15) << examAverage << endl;
 }
-// 

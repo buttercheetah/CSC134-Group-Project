@@ -12,20 +12,21 @@ class student {
     public:
         // constructers
         student(); // null
-        student(string _fname, string _lname, string _ssn, double _examScores[4],double _examAverage);
+        student(string _lname, string _fname, string _ssn, double _examScores[4],double _examAverage);
 
         //setters and getters
-        void setname(string _fname);
-        string getfname();
-        void setlname(string _lname);
+        void setname(string _lname);
         string getlname();
+        void setfname(string _fname);
+        string getfname();
         void setexamScores(double _examScores);
         void setssn(string _ssn);
         void setexamScores(int index, double _examScores);
         void setexamAverage();
         double getexamScores();
         double getAverage();
-        int getEmpID();
+        string getssn();
+        int getstudentNumber();
 
         // other functions
         void determinNewexamScores();
@@ -34,11 +35,11 @@ class student {
 
 
     private:
-        string fname;
-        string ssn;
         string lname;
+        string ssn;
+        string fname;
         double examScores[4];
         double examAverage;
-        static int empID;
+        static int studentNumber;
 };
 #endif

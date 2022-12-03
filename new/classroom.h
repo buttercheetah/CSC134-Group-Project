@@ -22,6 +22,7 @@ class classroom {
 
         //getters
         string getClassName();
+        student getStudentArray();
         int getStudentsAlreadyAdded();
 
         // other functions

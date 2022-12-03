@@ -6,7 +6,6 @@
 using namespace std;
 
 //initialize our static variable
-//int classroom::Student = 0;
 
 // Empty Class
 classroom::classroom() {
@@ -45,7 +44,8 @@ int classroom::getStudentsAlreadyAdded() {
 }
 // I dont know how to do this - Noah Liby
 void classroom::printstudentarray() {
-    cout << left << setw(15) << "Last Name" << setw(15) << "First Name" << setw(15) << "SSN" << setw(15) << "Score1" << setw(15) << "Score2"<< setw(15) << "Score3"<< setw(15) << "Score4" << setw(15) << "Average" << setw(15) << "Student ID" << endl;
+    cout << left << setw(15) << "Last Name" << setw(15) << "First Name" << setw(15) << "SSN" << right << setw(15) << "Score1" << setw(15) << "Score2"<< setw(15) << "Score3"<< setw(15) << "Score4" << setw(15) << "Average" << endl;
+    cout << "------------------------------------------------------------------------------------------------------------------------" << endl;
     for (int i = 0; i < StudentsAlreadyAdded ; i++)
 	{
 		StudentArray[i].displaystudentInfo();
@@ -58,22 +58,24 @@ void classroom::PopulateStudentArray() {
     string fnametemp;
 	string lnametemp;
 	string ssntemp;
+    string rangeLine;
 	double exam1temp;
 	double exam2temp;
 	double exam3temp;
 	double exam4temp;
 	ifstream inFile("studentInfo.txt");
-	while (inFile) // For each line in the file
+	while (!inFile.eof()) // For each line in the file
 	{
         // Populate the students array 
-        inFile >> fnametemp >> lnametemp >> ssntemp >> exam1temp >> exam2temp >> exam3temp >> exam4temp;
-		StudentArray[StudentsAlreadyAdded].setname(fnametemp);
-		StudentArray[StudentsAlreadyAdded].setlname(lnametemp);
-		StudentArray[StudentsAlreadyAdded].setssn(ssntemp);
-		StudentArray[StudentsAlreadyAdded].setexamScores(0,exam1temp);
-		StudentArray[StudentsAlreadyAdded].setexamScores(1,exam2temp);
-		StudentArray[StudentsAlreadyAdded].setexamScores(2,exam3temp);
-		StudentArray[StudentsAlreadyAdded].setexamScores(3,exam4temp);
+        
+        inFile >> lnametemp >> fnametemp >> ssntemp >> exam1temp >> exam2temp >> exam3temp >> exam4temp;
+        StudentArray[StudentsAlreadyAdded].setname(lnametemp);
+        StudentArray[StudentsAlreadyAdded].setfname(fnametemp);
+        StudentArray[StudentsAlreadyAdded].setssn(ssntemp);
+        StudentArray[StudentsAlreadyAdded].setexamScores(0,exam1temp);
+        StudentArray[StudentsAlreadyAdded].setexamScores(1,exam2temp);
+        StudentArray[StudentsAlreadyAdded].setexamScores(2,exam3temp);
+        StudentArray[StudentsAlreadyAdded].setexamScores(3,exam4temp);
         StudentArray[StudentsAlreadyAdded].setexamAverage();
         StudentsAlreadyAdded++;
 	}
@@ -115,7 +117,7 @@ void classroom::sortStudentsName() {
     {
         for (int j = i + 1; j < StudentsAlreadyAdded; j++)
         {
-            if (StudentArray[i].getfname().compare(StudentArray[j].getfname()) > 0)
+            if (StudentArray[i].getlname().compare(StudentArray[j].getlname()) > 0)
             {
                 temp = StudentArray[i];
                 StudentArray[i] = StudentArray[j];
