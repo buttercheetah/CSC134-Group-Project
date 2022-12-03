@@ -14,16 +14,6 @@ classroom::classroom() {
     student StudentArray[24];
 }
 
-//classroom::classroom(string _classname, int _StudentsAlreadyAdded, student _StudentArray[24]) {
-//    classname = "";
-//    StudentsAlreadyAdded = _StudentsAlreadyAdded;
-//    for (int i = 0; i < 24 ; i++)
-//	{
-//        StudentArray[i] = _StudentArray[i];
-//
-//	}
-//}
-
 // setters
 void classroom::setclassname(string _classname) {
     classname = _classname;
@@ -31,21 +21,32 @@ void classroom::setclassname(string _classname) {
 void classroom::setStudentsAlreadyAdded(int _StudentsAlreadyAdded) {
     StudentsAlreadyAdded = _StudentsAlreadyAdded;
 }
-void classroom::setStudentArray(string _StudentArray) {
-    // I dont know how to do this - Noah Liby
+void classroom::setStudentArray(student students[], int _numStudent) {
+    for (int i = 0; i < _numStudent ; i++)
+	{
+		StudentArray[i] = students[i];
+	}
+    StudentsAlreadyAdded = _numStudent;
 }
 
 // getters
+student* classroom::getStudentArray() {
+    return StudentArray;
+}
 string classroom::getClassName() {
     return classname;
 }
 int classroom::getStudentsAlreadyAdded() {
     return StudentsAlreadyAdded;
 }
-// I dont know how to do this - Noah Liby
+
+
 void classroom::printstudentarray() {
+    // print header
     cout << left << setw(15) << "Last Name" << setw(15) << "First Name" << setw(15) << "SSN" << right << setw(15) << "Score1" << setw(15) << "Score2"<< setw(15) << "Score3"<< setw(15) << "Score4" << setw(15) << "Average" << endl;
+    // print header seperator
     cout << "------------------------------------------------------------------------------------------------------------------------" << endl;
+    // print individual student data using its own function.
     for (int i = 0; i < StudentsAlreadyAdded ; i++)
 	{
 		StudentArray[i].displaystudentInfo();
@@ -53,8 +54,8 @@ void classroom::printstudentarray() {
 }
 
 // Other functions
-void classroom::PopulateStudentArray() {
-    // read from studentInfo
+void classroom::PopulateStudentArray(string _filename) {
+    // read from filename
     string fnametemp;
 	string lnametemp;
 	string ssntemp;
@@ -63,11 +64,10 @@ void classroom::PopulateStudentArray() {
 	double exam2temp;
 	double exam3temp;
 	double exam4temp;
-	ifstream inFile("studentInfo.txt");
+	ifstream inFile(_filename);
 	while (!inFile.eof()) // For each line in the file
 	{
         // Populate the students array 
-        
         inFile >> lnametemp >> fnametemp >> ssntemp >> exam1temp >> exam2temp >> exam3temp >> exam4temp;
         StudentArray[StudentsAlreadyAdded].setname(lnametemp);
         StudentArray[StudentsAlreadyAdded].setfname(fnametemp);
@@ -93,7 +93,6 @@ double classroom::AverageScoreOfAllStudents() {
 }
 void classroom::sortStudentsAverage() {
     // Sorts all students in StudentArray by average score
-	
 	student temp;
     for (int i = 0; i < StudentsAlreadyAdded; i++)
     {
@@ -110,8 +109,7 @@ void classroom::sortStudentsAverage() {
 
 }
 void classroom::sortStudentsName() {
-    // Sorts all students in StudentArray by average score
-	
+    // Sorts all students in StudentArray by last name
 	student temp;
     for (int i = 0; i < StudentsAlreadyAdded; i++)
     {

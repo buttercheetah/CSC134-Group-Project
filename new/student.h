@@ -12,25 +12,26 @@ class student {
     public:
         // constructers
         student(); // null
-        student(string _lname, string _fname, string _ssn, double _examScores[4],double _examAverage);
+        student(string _lname, string _fname, string _ssn, double* _examScores,double _examAverage);
 
-        //setters and getters
+        //setters
         void setname(string _lname);
-        string getlname();
         void setfname(string _fname);
-        string getfname();
         void setexamScores(double _examScores);
         void setssn(string _ssn);
         void setexamScores(int index, double _examScores);
         void setexamAverage();
-        double getexamScores();
+
+        //getters
+        string getlname();
+        string getfname();
+        double* getScores();
         double getAverage();
         string getssn();
         int getstudentNumber();
 
         // other functions
         void determinNewexamScores();
-
         void displaystudentInfo();
 
 
