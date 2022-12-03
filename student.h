@@ -12,13 +12,14 @@ class student {
     public:
         // constructers
         student(); // null
-        student(string _fname, string _lname, string _ssn, double _examScores[4]);
+        student(string _fname, string _lname, string _ssn, double _examScores);
 
-        //setters
+        //setters and getters
         void setfname(string _fname);
         void setlname(string _lname);
         void setssn(string _ssn);
-        void setexamScores(double _examScores[4]);
+        void setexamScores(double _examScores);
+
 
         //getters
         double getexamScores();
@@ -36,7 +37,7 @@ class student {
         string fname;
         string lname;
         string ssn;
-        double examScores[4];
+        double examScores;
         static int studentNumber;
 };
 #endif

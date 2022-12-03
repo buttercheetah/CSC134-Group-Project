@@ -12,6 +12,7 @@
 
 int main()
 {
-
+	student teststudent("fname", "lname", "00000", 100.0);
+	//teststudent.displayStudentInfo();
 	return 0;
 }
